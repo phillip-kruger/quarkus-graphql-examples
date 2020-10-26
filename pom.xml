@@ -55,6 +55,7 @@
         <module>asynchronous-example</module>
         <module>batch-example</module>
         <module>generics-example</module>
+        <module>events-example</module>
     </modules>
     <properties>
         <compiler-plugin.version>3.8.1</compiler-plugin.version>
