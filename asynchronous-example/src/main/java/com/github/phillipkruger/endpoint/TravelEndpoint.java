@@ -2,7 +2,7 @@ package com.github.phillipkruger.endpoint;
 
 import com.github.phillipkruger.model.Weather;
 import com.github.phillipkruger.service.WeatherService;
-import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.CompletionStage;
 import javax.inject.Inject;
 import org.eclipse.microprofile.graphql.GraphQLApi;
 import org.eclipse.microprofile.graphql.Query;
@@ -18,7 +18,7 @@ public class TravelEndpoint {
     WeatherService weatherService;
     
     @Query
-    public CompletableFuture<Weather> getWeather(String city){
+    public CompletionStage<Weather> getWeather(String city){
         return weatherService.getWeather(city);
     }
     

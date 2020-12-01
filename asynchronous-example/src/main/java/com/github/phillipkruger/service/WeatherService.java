@@ -8,7 +8,7 @@ import io.vertx.core.json.JsonObject;
 import io.vertx.ext.web.client.HttpResponse;
 import io.vertx.ext.web.client.WebClient;
 import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.ExecutionException;
+import java.util.concurrent.CompletionStage;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import org.eclipse.microprofile.config.inject.ConfigProperty;
@@ -26,7 +26,7 @@ public class WeatherService {
     @Inject
     Vertx vertx;
     
-    public CompletableFuture<Weather> getWeather(String city) {
+    public CompletionStage<Weather> getWeather(String city) {
         System.err.println(">>> Getting weather for " + city);
         Future<Weather> future = Future.future();
         WebClient client = WebClient.create(vertx);
@@ -57,6 +57,6 @@ public class WeatherService {
                     }
                 });
         
-        return future.toCompletionStage().toCompletableFuture();
+        return future.toCompletionStage();
     }
 }
