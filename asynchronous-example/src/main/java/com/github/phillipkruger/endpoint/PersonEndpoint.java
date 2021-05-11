@@ -5,10 +5,7 @@ import com.github.phillipkruger.model.CurencyCode;
 import com.github.phillipkruger.model.ExchangeRate;
 import com.github.phillipkruger.model.Person;
 import com.github.phillipkruger.service.PersonService;
-import io.smallrye.mutiny.Uni;
-import io.smallrye.mutiny.infrastructure.Infrastructure;
 import java.util.List;
-import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CompletionStage;
 import javax.inject.Inject;
@@ -40,6 +37,6 @@ public class PersonEndpoint {
     }
     
     public CompletionStage<ExchangeRate> getExchangeRate(@Source Person person, CurencyCode against){
-        return CompletableFuture.supplyAsync(() -> exchangeRateService.getExchangeRate(against,person.curencyCode));    
+        return exchangeRateService.getFutureExchangeRate(against,person.curencyCode);
     }
 }

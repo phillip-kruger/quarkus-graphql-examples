@@ -8,6 +8,7 @@ import com.github.phillipkruger.service.PersonService;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ExecutionException;
 import javax.inject.Inject;
 import org.eclipse.microprofile.graphql.GraphQLApi;
 import org.eclipse.microprofile.graphql.Query;
@@ -37,14 +38,17 @@ public class PersonEndpoint {
     }
     
     public List<ExchangeRate> getExchangeRate(@Source List<Person> people, CurencyCode against){
-        Map<CurencyCode, Double> map = exchangeRateService.getExchangeRates(against);
-        
-        List<ExchangeRate> rates = new ArrayList<>();
-        for(Person person : people){
-            Double rate = map.get(person.curencyCode);
-            rates.add(new ExchangeRate(person.curencyCode, against, rate));
+        try {
+            Map<CurencyCode, ExchangeRate> map = exchangeRateService.getFutureExchangeRate(against).toCompletableFuture().get();
+            
+            List<ExchangeRate> rates = new ArrayList<>();
+            for(Person person : people){
+                rates.add(map.get(person.curencyCode));
+            }
+            
+            return rates;
+        } catch (InterruptedException | ExecutionException ex) {
+            throw new RuntimeException(ex);
         }
-        
-        return rates;
     }
 }

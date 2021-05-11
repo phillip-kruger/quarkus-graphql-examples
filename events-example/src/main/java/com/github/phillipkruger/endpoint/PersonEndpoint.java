@@ -17,7 +17,7 @@ import io.smallrye.graphql.cdi.event.ErrorInfo;
 import io.smallrye.graphql.execution.event.InvokeInfo;
 import io.smallrye.graphql.schema.model.Operation;
 import java.util.List;
-import java.util.Map;
+import java.util.concurrent.ExecutionException;
 import javax.enterprise.event.Observes;
 import javax.inject.Inject;
 import org.eclipse.microprofile.graphql.GraphQLApi;
@@ -48,14 +48,13 @@ public class PersonEndpoint {
     }
     
     public ExchangeRate getExchangeRate(@Source Person person, CurencyCode against){
-        Map<CurencyCode, Double> map = exchangeRateService.getExchangeRates(against);
-        Double rate = map.get(person.curencyCode);
-        
-        ExchangeRate exchangeRate = new ExchangeRate(person.curencyCode, against, rate);
-        
-        System.err.println("exchangeRate = " + exchangeRate);
-        
-        return exchangeRate;
+        try {
+            ExchangeRate exchangeRate = exchangeRateService.getFutureExchangeRate(against,person.curencyCode).toCompletableFuture().get();
+            System.err.println("exchangeRate = " + exchangeRate);
+            return exchangeRate;
+        } catch (InterruptedException | ExecutionException ex) {
+            throw new RuntimeException(ex);
+        }
     }
     
     public GraphQLSchema.Builder beforeSchemaBuild(@Observes GraphQLSchema.Builder builder) {

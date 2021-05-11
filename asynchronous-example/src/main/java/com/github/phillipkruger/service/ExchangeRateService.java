@@ -2,17 +2,18 @@ package com.github.phillipkruger.service;
 
 import com.github.phillipkruger.model.CurencyCode;
 import com.github.phillipkruger.model.ExchangeRate;
-import io.smallrye.graphql.api.Context;
+import io.vertx.core.AsyncResult;
 import io.vertx.core.Future;
 import io.vertx.core.Vertx;
 import io.vertx.core.buffer.Buffer;
 import io.vertx.core.json.JsonObject;
+import io.vertx.ext.web.client.HttpRequest;
 import io.vertx.ext.web.client.HttpResponse;
 import io.vertx.ext.web.client.WebClient;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.ExecutionException;
+import java.util.concurrent.CompletionStage;
+import java.util.function.Function;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 
@@ -27,46 +28,30 @@ public class ExchangeRateService {
     @Inject
     Vertx vertx;
 
-    public ExchangeRate getExchangeRate(CurencyCode base, CurencyCode forCurencyCode){
-        Map<CurencyCode, Double> map = getExchangeRates(base);
-        Double rate = map.get(forCurencyCode);
-        ExchangeRate exchangeRate = new ExchangeRate(forCurencyCode, base, rate);
-        return exchangeRate;
-    }
-    
-    public Map<CurencyCode, Double> getExchangeRates(CurencyCode base) {
-        System.err.println(">>> Getting exchange rate for " + base);
-        try {
-            CompletableFuture<Map<CurencyCode, Double>> futureExchangeRates = getFutureExchangeRates(base);
-            Map<CurencyCode, Double> map = futureExchangeRates.get();
-            System.err.println("<<< Got exchange rate for " + base);
-            return map;
-        } catch (InterruptedException | ExecutionException ex) {
-            throw new RuntimeException(ex);
-        }
-    }
-    
-    public CompletableFuture<Map<CurencyCode, Double>> getFutureExchangeRates(CurencyCode base) {
-        Future<Map<CurencyCode, Double>> future = Future.future();
+    public CompletionStage<ExchangeRate> getFutureExchangeRate(CurencyCode base, CurencyCode forCurencyCode){
         WebClient client = WebClient.create(vertx);
-        client.get(80, "api.exchangeratesapi.io", "/latest")
-                .addQueryParam("base", base.toString())
-                .send((var e) -> {
-                    if(e.succeeded()){
-                        HttpResponse<Buffer> response = e.result();
-                        JsonObject jsonResponse = response.bodyAsJsonObject();
-                        Map<CurencyCode, Double> map = new HashMap<>();
-                        Map<String,Object> jsonMap = jsonResponse.getJsonObject("rates").getMap();
-                        for(Map.Entry<String, Object> entry:jsonMap.entrySet()){
-                            map.put(CurencyCode.valueOf(entry.getKey()), Double.valueOf(entry.getValue().toString()));
-                        }
-                        future.complete(map);
-                    }else if(e.failed()){
-                        future.failed();
-                    }
-                });
         
-        return future.toCompletionStage().toCompletableFuture();
+        HttpRequest<Buffer> httpRequest = client.get(80, "api.ratesapi.io", "/api/latest")
+                .addQueryParam("base", base.toString())
+                .addQueryParam("symbols", forCurencyCode.toString());
+        
+        Future<HttpResponse<Buffer>> futureResponse = httpRequest.send();
+
+        Function<AsyncResult<HttpResponse<Buffer>>,Future<ExchangeRate>> f = new Function<>(){
+            public Future<ExchangeRate> apply(AsyncResult<HttpResponse<Buffer>> futureResponse){
+                HttpResponse<Buffer> result = futureResponse.result();
+                
+                JsonObject jsonResponse = result.bodyAsJsonObject();
+                Map<CurencyCode, Double> map = new HashMap<>();
+                JsonObject rates = jsonResponse.getJsonObject("rates");
+                Double rate = rates.getDouble(forCurencyCode.toString());
+                ExchangeRate exchangeRate = new ExchangeRate(forCurencyCode, base, rate);
+                return Future.succeededFuture(exchangeRate);
+
+            }
+        };
+        
+        return futureResponse.transform(f).toCompletionStage();
     }
 
 }

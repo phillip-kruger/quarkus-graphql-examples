@@ -6,7 +6,7 @@ import com.github.phillipkruger.model.ExchangeRate;
 import com.github.phillipkruger.model.Person;
 import com.github.phillipkruger.service.PersonService;
 import java.util.List;
-import java.util.Map;
+import java.util.concurrent.ExecutionException;
 import javax.inject.Inject;
 import org.eclipse.microprofile.graphql.GraphQLApi;
 import org.eclipse.microprofile.graphql.Query;
@@ -36,8 +36,12 @@ public class PersonEndpoint {
     }
     
     public ExchangeRate getExchangeRate(@Source Person person, CurencyCode against){
-        Map<CurencyCode, Double> map = exchangeRateService.getExchangeRates(against);
-        Double rate = map.get(person.curencyCode);
-        return new ExchangeRate(person.curencyCode, against, rate);
+        try {
+            ExchangeRate exchangeRate = exchangeRateService.getFutureExchangeRate(against,person.curencyCode).toCompletableFuture().get();
+            System.err.println("exchangeRate = " + exchangeRate);
+            return exchangeRate;
+        } catch (InterruptedException | ExecutionException ex) {
+            throw new RuntimeException(ex);
+        }
     }
 }
