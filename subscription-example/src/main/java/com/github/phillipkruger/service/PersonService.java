@@ -37,13 +37,16 @@ public class PersonService {
     }
     
     public Person addPerson(Person p){
-        Person person = PEOPLE.put(p.id, p);
-        processor.onNext(person);
-        return person;
+        if(p!=null){
+            PEOPLE.put(p.id, p);
+            processor.onNext(p);
+            return p;
+        }
+        return null;
     }
     
     public Multi<Person> personListener(){
-        return processor.toHotStream();
+        return processor;
     }
     
     private static final Map<Integer,Person> PEOPLE = new ConcurrentHashMap<>();

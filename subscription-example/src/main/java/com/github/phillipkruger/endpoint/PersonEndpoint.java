@@ -21,7 +21,7 @@ import org.reactivestreams.Publisher;
  */
 @GraphQLApi
 public class PersonEndpoint {
-
+    
     @Inject
     PersonService personService;
     
