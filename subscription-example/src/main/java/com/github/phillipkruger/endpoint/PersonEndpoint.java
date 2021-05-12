@@ -6,6 +6,7 @@ import com.github.phillipkruger.model.ExchangeRate;
 import com.github.phillipkruger.model.Person;
 import com.github.phillipkruger.service.PersonService;
 import io.smallrye.graphql.api.Subscription;
+import io.smallrye.mutiny.Multi;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 import javax.inject.Inject;
@@ -13,7 +14,6 @@ import org.eclipse.microprofile.graphql.GraphQLApi;
 import org.eclipse.microprofile.graphql.Mutation;
 import org.eclipse.microprofile.graphql.Query;
 import org.eclipse.microprofile.graphql.Source;
-import org.reactivestreams.Publisher;
 
 /**
  * Person GraphQL endpoint
@@ -44,7 +44,7 @@ public class PersonEndpoint {
     }
     
     @Subscription
-    public Publisher<Person> personAdded(){
+    public Multi<Person> personAdded(){
         return personService.personListener();
     }
     
