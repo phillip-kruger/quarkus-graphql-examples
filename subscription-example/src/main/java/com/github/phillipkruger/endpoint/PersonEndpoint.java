@@ -7,8 +7,10 @@ import com.github.phillipkruger.model.Person;
 import com.github.phillipkruger.service.PersonService;
 import io.smallrye.graphql.api.Subscription;
 import io.smallrye.mutiny.Multi;
+import java.time.Duration;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
+import java.util.function.Function;
 import javax.inject.Inject;
 import org.eclipse.microprofile.graphql.GraphQLApi;
 import org.eclipse.microprofile.graphql.Mutation;
@@ -34,7 +36,7 @@ public class PersonEndpoint {
     }
     
     @Query
-    public Person getPerson(int id){
+    public Person getPerson(int id) {
         return personService.getPerson(id);
     }
     
@@ -48,6 +50,25 @@ public class PersonEndpoint {
         return personService.personListener();
     }
     
+    @Subscription
+    public Multi<Person> randomPerson() {
+        Multi<Long> ticks = Multi.createFrom().ticks().every(Duration.ofSeconds(2));
+           
+        return ticks.onItem().transformToMulti(new Function<Long,Multi<Person>>() {
+            @Override
+            public Multi<Person> apply(Long t) {
+                if(t.intValue() < 10 ){
+                    Person p = personService.getPerson(1);
+                    p.id = t.intValue();
+                    return Multi.createFrom().items(p);
+                }else{
+                    return Multi.createFrom().failure(new RuntimeException("Some big issue !"));
+                }
+            }
+        }).merge();
+        
+    } 
+    
     public ExchangeRate getExchangeRate(@Source Person person, CurencyCode against){
         try {
             ExchangeRate exchangeRate = exchangeRateService.getFutureExchangeRate(against,person.curencyCode).toCompletableFuture().get();
@@ -57,4 +78,5 @@ public class PersonEndpoint {
             throw new RuntimeException(ex);
         }
     }
+
 }

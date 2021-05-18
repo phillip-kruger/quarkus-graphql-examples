@@ -39,7 +39,15 @@ public class PersonService {
     public Person addPerson(Person p){
         if(p!=null){
             PEOPLE.put(p.id, p);
-            processor.onNext(p);
+            
+            if(p.id == 5){
+                processor.onError(new RuntimeException("This is id 5, and represent a RuntimeException"));
+            } else if(p.id == 6){
+                processor.onError(new SixNotAllowedException("This is id 6, and represent a Checked Exception"));
+            } else {
+                processor.onNext(p);
+            }
+            
             return p;
         }
         return null;

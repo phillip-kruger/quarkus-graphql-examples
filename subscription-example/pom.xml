@@ -11,4 +11,5 @@
     <artifactId>subscription-example</artifactId>
     
     <name>GraphQL Experimental :: Subscription Example</name>
+    
 </project>
