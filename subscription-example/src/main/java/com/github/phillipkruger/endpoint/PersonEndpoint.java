@@ -57,7 +57,7 @@ public class PersonEndpoint {
         return ticks.onItem().transformToMulti(new Function<Long,Multi<Person>>() {
             @Override
             public Multi<Person> apply(Long t) {
-                if(t.intValue() < 10 ){
+                if(t.intValue() < 5 ){
                     Person p = personService.getPerson(1);
                     p.id = t.intValue();
                     return Multi.createFrom().items(p);
