@@ -5,6 +5,7 @@ import com.github.phillipkruger.model.CurencyCode;
 import com.github.phillipkruger.model.ExchangeRate;
 import com.github.phillipkruger.model.Person;
 import com.github.phillipkruger.service.PersonService;
+import io.smallrye.graphql.api.Context;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 import javax.inject.Inject;
@@ -35,7 +36,8 @@ public class PersonEndpoint {
         return personService.getPerson(id);
     }
     
-    public ExchangeRate getExchangeRate(@Source Person person, CurencyCode against){
+    public ExchangeRate getExchangeRate(@Source Person person, Context context, CurencyCode against){
+        System.err.println("context in PersonService = " + context);
         try {
             ExchangeRate exchangeRate = exchangeRateService.getFutureExchangeRate(against,person.curencyCode).toCompletableFuture().get();
             System.err.println("exchangeRate = " + exchangeRate);
