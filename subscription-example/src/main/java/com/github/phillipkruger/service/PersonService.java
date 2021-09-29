@@ -26,35 +26,34 @@ import javax.enterprise.context.ApplicationScoped;
  */
 @ApplicationScoped
 public class PersonService {
-    BroadcastProcessor<Person> processor = BroadcastProcessor.create();
+    BroadcastProcessor<Person> processorAdded = BroadcastProcessor.create();
+    BroadcastProcessor<Person> processorQueried = BroadcastProcessor.create();
     
     public List<Person> getAllPeople(){
         return List.copyOf(PEOPLE.values());
     }
     
     public Person getPerson(int id){
-        return PEOPLE.get(id);
+        Person p = PEOPLE.get(id);
+        processorQueried.onNext(p);
+        return p;
     }
     
     public Person addPerson(Person p){
         if(p!=null){
             PEOPLE.put(p.id, p);
-            
-            if(p.id == 5){
-                processor.onError(new RuntimeException("This is id 5, and represent a RuntimeException"));
-            } else if(p.id == 6){
-                processor.onError(new SixNotAllowedException("This is id 6, and represent a Checked Exception"));
-            } else {
-                processor.onNext(p);
-            }
-            
+            processorAdded.onNext(p);
             return p;
         }
         return null;
     }
     
-    public Multi<Person> personListener(){
-        return processor;
+    public Multi<Person> personAddedListener(){
+        return processorAdded;
+    }
+    
+    public Multi<Person> personQueriedListener(){
+        return processorQueried;
     }
     
     private static final Map<Integer,Person> PEOPLE = new ConcurrentHashMap<>();

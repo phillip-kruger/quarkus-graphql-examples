@@ -47,7 +47,12 @@ public class PersonEndpoint {
     
     @Subscription
     public Multi<Person> personAdded(){
-        return personService.personListener();
+        return personService.personAddedListener();
+    }
+    
+    @Subscription
+    public Multi<Person> personQueried(){
+        return personService.personQueriedListener();
     }
     
     @Subscription
