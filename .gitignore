@@ -28,3 +28,4 @@ hs_err_pid*
 /generics-example/target/
 /events-example/target/
 /subscription-example/target/
+/map-example/target/

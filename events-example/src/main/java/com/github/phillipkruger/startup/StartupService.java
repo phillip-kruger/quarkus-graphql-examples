@@ -1,8 +1,11 @@
 package com.github.phillipkruger.startup;
 
 import io.quarkus.runtime.StartupEvent;
+import io.smallrye.graphql.api.Context;
 import io.smallrye.graphql.execution.ExecutionResponse;
+import io.smallrye.graphql.execution.ExecutionResponseWriter;
 import io.smallrye.graphql.execution.ExecutionService;
+import io.smallrye.graphql.execution.JsonObjectResponseWriter;
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.event.Observes;
 import javax.inject.Inject;
@@ -24,9 +27,13 @@ public class StartupService {
         JsonObjectBuilder builder = Json.createObjectBuilder();
         builder.add("query", ALL_NAMES);
         JsonObject request = builder.build();
-        ExecutionResponse response = executionService.execute(request);
-        
-        System.err.println(">>>>> " + response.getExecutionResultAsString());
+        ExecutionResponseWriter writer = new ExecutionResponseWriter(){
+            @Override
+            public void write(ExecutionResponse response) {
+                System.err.println(">>>>> " + response.getExecutionResultAsString());
+            }
+        };
+        executionService.execute(request, writer, false);
         
     }
     
