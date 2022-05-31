@@ -29,3 +29,4 @@ hs_err_pid*
 /events-example/target/
 /subscription-example/target/
 /map-example/target/
+/nonblocking-example/target/
