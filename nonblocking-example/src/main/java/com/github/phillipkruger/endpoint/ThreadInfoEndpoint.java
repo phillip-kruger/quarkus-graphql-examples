@@ -3,8 +3,6 @@ package com.github.phillipkruger.endpoint;
 import io.smallrye.common.annotation.Blocking;
 import io.smallrye.common.annotation.NonBlocking;
 import io.smallrye.mutiny.Uni;
-import java.util.HashMap;
-import java.util.Map;
 import org.eclipse.microprofile.graphql.GraphQLApi;
 import org.eclipse.microprofile.graphql.Query;
 import org.eclipse.microprofile.graphql.Source;
@@ -57,17 +55,17 @@ public class ThreadInfoEndpoint {
     }
     
     private ThreadInfo getThreadInfo(){
-        Map<String,String> info = new HashMap<>();
+        ThreadInfo info = new ThreadInfo();
         
         Thread currentThread = Thread.currentThread();
-        info.put("name", currentThread.getName());
-        info.put("id", String.valueOf(currentThread.getId()));
-        info.put("state", currentThread.getState().name());
-        info.put("priority", String.valueOf(currentThread.getPriority()));
-        info.put("threadGroup", currentThread.getThreadGroup().getName());
-        info.put("isAlive", String.valueOf(currentThread.isAlive()));
-        info.put("isDaemon", String.valueOf(currentThread.isDaemon()));
-        return new ThreadInfo(info);  
+        info.setName(currentThread.getName());
+        info.setId(currentThread.getId());
+        info.setState(currentThread.getState().name());
+        info.setPriority(currentThread.getPriority());
+        info.setThreadGroup(currentThread.getThreadGroup().getName());
+        info.setIsAlive(currentThread.isAlive());
+        info.setIsDaemon(currentThread.isDaemon());
+        return info;  
     }
     
 }
