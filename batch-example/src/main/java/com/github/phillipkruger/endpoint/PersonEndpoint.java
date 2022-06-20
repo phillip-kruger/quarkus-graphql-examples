@@ -32,25 +32,20 @@ public class PersonEndpoint {
         return personService.getAllPeople();
     }
     
-    @Query
-    public Person getPerson(int id){
-        return personService.getPerson(id);
-    }
-    
     public ExchangeRate getExchangeRate(@Source Person person, CurencyCode against){
         Map<CurencyCode, ExchangeRate> map = getExchangeRate(against);
         List<ExchangeRate> rates = new ArrayList<>();
         return map.get(person.curencyCode);
     }
     
-//    public List<ExchangeRate> getExchangeRate(@Source List<Person> people, CurencyCode against){
-//        Map<CurencyCode, ExchangeRate> map = getExchangeRate(against);
-//        List<ExchangeRate> rates = new ArrayList<>();
-//        for(Person person : people){
-//            rates.add(map.get(person.curencyCode));
-//        }
-//        return rates;
-//    }
+    public List<ExchangeRate> getExchangeRate2(@Source List<Person> people, CurencyCode against){
+        Map<CurencyCode, ExchangeRate> map = getExchangeRate(against);
+        List<ExchangeRate> rates = new ArrayList<>();
+        for(Person person : people){
+            rates.add(map.get(person.curencyCode));
+        }
+        return rates;
+    }
     
     private Map<CurencyCode, ExchangeRate> getExchangeRate(CurencyCode against){
         try {

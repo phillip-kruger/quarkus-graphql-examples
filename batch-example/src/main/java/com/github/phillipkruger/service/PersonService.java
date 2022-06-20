@@ -90,6 +90,111 @@ public class PersonService {
             
             p2.curencyCode = CurencyCode.AUD;
             
+            Person p3 = new Person();
+            p3.id = 3;
+            p3.locale = Locale.ENGLISH.toString();
+            p3.title = "Mr";
+            p3.addName("John");
+            p3.surname = "Doe";
+            p3.gender = Gender.Male;
+            p3.birthDate = LocalDate.of(1999, Month.APRIL, 12);
+            p3.website = new URL("http://www.unknown.com");
+            p3.addEmailAddress("john.doe@gmail.com");
+            
+            Address p3a1 = new Address();
+            p3a1.addLine("1 Main street");
+            p3a1.addLine("Melbourne");
+            p3a1.addLine("VIC");
+            p3a1.code = "3000";
+            p3.addAddress(p3a1);
+            
+            Phone p3p1 = new Phone();
+            p3p1.number = "123456789";
+            p3p1.type = "Mobile";
+            p3.addPhoneNumber(p3p1);
+            
+            p3.curencyCode = CurencyCode.AUD;
+            
+            
+            Person p4 = new Person();
+            p4.id = 4;
+            p4.locale = Locale.ENGLISH.toString();
+            p4.title = "Mrs";
+            p4.addName("Jane");
+            p4.surname = "Doe";
+            p4.gender = Gender.Female;
+            p4.birthDate = LocalDate.of(1999, Month.APRIL, 13);
+            p4.website = new URL("http://www.unknown.com");
+            p4.addEmailAddress("jane.doe@gmail.com");
+            
+            Address p4a1 = new Address();
+            p4a1.addLine("2 Main street");
+            p4a1.addLine("Melbourne");
+            p4a1.addLine("VIC");
+            p4a1.code = "3000";
+            p4.addAddress(p4a1);
+            
+            Phone p4p1 = new Phone();
+            p4p1.number = "123456789";
+            p4p1.type = "Mobile";
+            p4.addPhoneNumber(p4p1);
+            
+            p4.curencyCode = CurencyCode.GBP;
+            
+            
+            Person p5 = new Person();
+            p5.id = 5;
+            p5.locale = Locale.GERMAN.toString();
+            p5.title = "Mr";
+            p5.addName("Fridrigh");
+            p5.surname = "Goedtentag";
+            p5.gender = Gender.Male;
+            p5.birthDate = LocalDate.of(1998, Month.AUGUST, 9);
+            p5.website = new URL("http://www.goedtentag.com");
+            p5.addEmailAddress("goedtentag@gmail.com");
+            
+            Address p5a1 = new Address();
+            p5a1.addLine("1 Main street");
+            p5a1.addLine("Berlin");
+            p5a1.addLine("Germany");
+            p5a1.code = "9876";
+            p5.addAddress(p5a1);
+            
+            Phone p5p1 = new Phone();
+            p5p1.number = "123456789";
+            p5p1.type = "Mobile";
+            p5.addPhoneNumber(p5p1);
+            
+            p5.curencyCode = CurencyCode.EUR;
+            
+            
+            Person p6 = new Person();
+            p6.id = 6;
+            p6.locale = Locale.ENGLISH.toString();
+            p6.title = "Mr";
+            p6.addName("Chuck");
+            p6.surname = "Norris";
+            p6.gender = Gender.Male;
+            p6.birthDate = LocalDate.of(2000, Month.JANUARY, 1);
+            p6.website = new URL("http://www.chuck.com");
+            p6.addEmailAddress("chuck@gmail.com");
+            
+            Address p6a1 = new Address();
+            p6a1.addLine("1 Chuck road");
+            p6a1.addLine("Chuckville");
+            p6a1.addLine("USA");
+            p6a1.code = "0000";
+            p6.addAddress(p6a1);
+            
+            Phone p6p1 = new Phone();
+            p6p1.number = "123456789";
+            p6p1.type = "Mobile";
+            p6.addPhoneNumber(p5p1);
+            
+            p6.curencyCode = CurencyCode.USD;
+            
+            // Releationships
+            
             Relation p1r1 = new Relation();
             p1r1.relationType = RelationType.Spouse;
             p1r1.person = p2;
@@ -102,6 +207,10 @@ public class PersonService {
             
             PEOPLE.put(p1.id, p1);
             PEOPLE.put(p2.id, p2);
+            PEOPLE.put(p3.id, p3);
+            PEOPLE.put(p4.id, p4);
+            PEOPLE.put(p5.id, p5);
+            PEOPLE.put(p6.id, p6);
         } catch (MalformedURLException ex) {
             throw new RuntimeException(ex);
         }

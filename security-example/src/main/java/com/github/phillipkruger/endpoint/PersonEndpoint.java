@@ -11,6 +11,7 @@ import java.util.Map;
 import java.util.concurrent.ExecutionException;
 import javax.annotation.security.RolesAllowed;
 import javax.inject.Inject;
+import org.eclipse.microprofile.graphql.DefaultValue;
 import org.eclipse.microprofile.graphql.GraphQLApi;
 import org.eclipse.microprofile.graphql.Query;
 import org.eclipse.microprofile.graphql.Source;
@@ -36,7 +37,7 @@ public class PersonEndpoint {
     }
     
     @RolesAllowed("admin")
-    public ExchangeRate getExchangeRate(@Source Person person, CurencyCode against){
+    public ExchangeRate getExchangeRate(@Source Person person, @DefaultValue("USD") CurencyCode against){
         Map<CurencyCode, ExchangeRate> map = getExchangeRate(against);
         List<ExchangeRate> rates = new ArrayList<>();
         return map.get(person.curencyCode);
