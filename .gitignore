@@ -33,3 +33,4 @@ hs_err_pid*
 /jpa-example/target/
 /adapter-example/target/
 /security-example/target/
+/paging-example/target/
