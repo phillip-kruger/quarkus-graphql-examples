@@ -37,16 +37,27 @@ public class PersonEndpoint {
         return personService.getPerson(id);
     }
     
-    public List<ExchangeRate> getExchangeRate(@Source List<Person> people, CurencyCode against){
+    public ExchangeRate getExchangeRate(@Source Person person, CurencyCode against){
+        Map<CurencyCode, ExchangeRate> map = getExchangeRate(against);
+        List<ExchangeRate> rates = new ArrayList<>();
+        return map.get(person.curencyCode);
+    }
+    
+//    public List<ExchangeRate> getExchangeRate(@Source List<Person> people, CurencyCode against){
+//        Map<CurencyCode, ExchangeRate> map = getExchangeRate(against);
+//        List<ExchangeRate> rates = new ArrayList<>();
+//        for(Person person : people){
+//            rates.add(map.get(person.curencyCode));
+//        }
+//        return rates;
+//    }
+    
+    private Map<CurencyCode, ExchangeRate> getExchangeRate(CurencyCode against){
         try {
-            Map<CurencyCode, ExchangeRate> map = exchangeRateService.getFutureExchangeRate(against).toCompletableFuture().get();
             
-            List<ExchangeRate> rates = new ArrayList<>();
-            for(Person person : people){
-                rates.add(map.get(person.curencyCode));
-            }
+            System.out.println(">>>>> Making backend call ...");
             
-            return rates;
+            return exchangeRateService.getExchangeRate(against);
         } catch (InterruptedException | ExecutionException ex) {
             throw new RuntimeException(ex);
         }

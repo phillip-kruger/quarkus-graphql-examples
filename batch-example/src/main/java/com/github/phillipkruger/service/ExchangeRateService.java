@@ -12,10 +12,11 @@ import io.vertx.ext.web.client.HttpResponse;
 import io.vertx.ext.web.client.WebClient;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.concurrent.CompletionStage;
+import java.util.concurrent.ExecutionException;
 import java.util.function.Function;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
+import org.eclipse.microprofile.config.inject.ConfigProperty;
 
 /**
  * Service that return the exchange rate against a certain base
@@ -28,37 +29,51 @@ public class ExchangeRateService {
     @Inject
     Vertx vertx;
 
-    public CompletionStage<Map<CurencyCode,ExchangeRate>> getFutureExchangeRate(CurencyCode base){
-        WebClient client = WebClient.create(vertx);
+    @ConfigProperty(name = "exchangerate.api.key", defaultValue = "")
+    String apiKey;
+    
+    private Map<CurencyCode,Map<CurencyCode,ExchangeRate>> cache = new HashMap<>();
+    
+    public Map<CurencyCode,ExchangeRate> getExchangeRate(CurencyCode base) throws InterruptedException, ExecutionException{
+        if(cache.containsKey(base)){
+            return cache.get(base);
+        }else{
         
-        HttpRequest<Buffer> httpRequest = client.get(80, "api.ratesapi.io", "/api/latest")
-                .addQueryParam("base", base.toString());
-        
-        Future<HttpResponse<Buffer>> futureResponse = httpRequest.send();
+            WebClient client = WebClient.create(vertx);
 
-        Function<AsyncResult<HttpResponse<Buffer>>,Future<Map<CurencyCode, ExchangeRate>>> f = new Function<>(){
-            public Future<Map<CurencyCode,ExchangeRate>> apply(AsyncResult<HttpResponse<Buffer>> futureResponse){
-                HttpResponse<Buffer> result = futureResponse.result();
-                
-                JsonObject jsonResponse = result.bodyAsJsonObject();
-                Map<CurencyCode, Double> map = new HashMap<>();
-                Map<String, Object> rates = jsonResponse.getJsonObject("rates").getMap();
-                
-                Map<CurencyCode,ExchangeRate> mappedRates = new HashMap<>();
-                
-                for(Map.Entry<String, Object> rate:rates.entrySet()){
-                    CurencyCode cc = CurencyCode.valueOf(rate.getKey());
-                    Double d = Double.valueOf(String.valueOf(rate.getValue()));
-                    ExchangeRate exchangeRate = new ExchangeRate(cc, base, d);
-                    mappedRates.put(cc, exchangeRate);
+            HttpRequest<Buffer> httpRequest = client.get(80, "api.apilayer.com", "/exchangerates_data/latest")
+                    .addQueryParam("base", base.toString())
+                    .putHeader("apikey", apiKey);
+
+            Future<HttpResponse<Buffer>> futureResponse = httpRequest.send();
+
+            Function<AsyncResult<HttpResponse<Buffer>>,Future<Map<CurencyCode, ExchangeRate>>> f = new Function<>(){
+                public Future<Map<CurencyCode,ExchangeRate>> apply(AsyncResult<HttpResponse<Buffer>> futureResponse){
+                    HttpResponse<Buffer> result = futureResponse.result();
+                    JsonObject jsonResponse = result.bodyAsJsonObject();
+                    Map<CurencyCode, Double> map = new HashMap<>();
+                    Map<String, Object> rates = jsonResponse.getJsonObject("rates").getMap();
+
+                    Map<CurencyCode,ExchangeRate> mappedRates = new HashMap<>();
+
+                    for(Map.Entry<String, Object> rate:rates.entrySet()){
+                        CurencyCode cc = CurencyCode.valueOf(rate.getKey());
+                        Double d = Double.valueOf(String.valueOf(rate.getValue()));
+                        ExchangeRate exchangeRate = new ExchangeRate(cc, base, d);
+                        mappedRates.put(cc, exchangeRate);
+                    }
+
+                    return Future.succeededFuture(mappedRates);
+
                 }
-                
-                return Future.succeededFuture(mappedRates);
+            };
 
-            }
-        };
-        
-        return futureResponse.transform(f).toCompletionStage();
+            Map<CurencyCode, ExchangeRate> rates = futureResponse.transform(f).toCompletionStage().toCompletableFuture().get();
+            
+            cache.put(base, rates);
+            
+            return rates;
+        }
     }
 
 }

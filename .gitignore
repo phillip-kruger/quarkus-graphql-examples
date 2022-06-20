@@ -31,3 +31,4 @@ hs_err_pid*
 /map-example/target/
 /nonblocking-example/target/
 /jpa-example/target/
+/adapter-example/target/

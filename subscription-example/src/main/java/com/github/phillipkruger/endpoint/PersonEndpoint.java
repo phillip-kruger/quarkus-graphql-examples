@@ -1,21 +1,16 @@
 package com.github.phillipkruger.endpoint;
 
-import com.github.phillipkruger.service.ExchangeRateService;
-import com.github.phillipkruger.model.CurencyCode;
-import com.github.phillipkruger.model.ExchangeRate;
 import com.github.phillipkruger.model.Person;
 import com.github.phillipkruger.service.PersonService;
 import io.smallrye.graphql.api.Subscription;
 import io.smallrye.mutiny.Multi;
 import java.time.Duration;
 import java.util.List;
-import java.util.concurrent.ExecutionException;
 import java.util.function.Function;
 import javax.inject.Inject;
 import org.eclipse.microprofile.graphql.GraphQLApi;
 import org.eclipse.microprofile.graphql.Mutation;
 import org.eclipse.microprofile.graphql.Query;
-import org.eclipse.microprofile.graphql.Source;
 
 /**
  * Person GraphQL endpoint
@@ -26,9 +21,6 @@ public class PersonEndpoint {
     
     @Inject
     PersonService personService;
-    
-    @Inject
-    ExchangeRateService exchangeRateService;
     
     @Query
     public List<Person> getPeople(){
@@ -62,26 +54,17 @@ public class PersonEndpoint {
         return ticks.onItem().transformToMulti(new Function<Long,Multi<Person>>() {
             @Override
             public Multi<Person> apply(Long t) {
-                if(t.intValue() < 5 ){
+                if ((t % 2) == 0) {
                     Person p = personService.getPerson(1);
-                    p.id = t.intValue();
                     return Multi.createFrom().items(p);
-                }else{
-                    return Multi.createFrom().failure(new RuntimeException("Some big issue !"));
+                } else {
+                    Person p = personService.getPerson(2);
+                    return Multi.createFrom().items(p);
                 }
             }
         }).merge();
         
     } 
     
-    public ExchangeRate getExchangeRate(@Source Person person, CurencyCode against){
-        try {
-            ExchangeRate exchangeRate = exchangeRateService.getFutureExchangeRate(against,person.curencyCode).toCompletableFuture().get();
-            System.err.println("exchangeRate = " + exchangeRate);
-            return exchangeRate;
-        } catch (InterruptedException | ExecutionException ex) {
-            throw new RuntimeException(ex);
-        }
-    }
 
 }

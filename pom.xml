@@ -60,6 +60,7 @@
         <module>map-example</module>
         <module>nonblocking-example</module>
         <module>jpa-example</module>
+        <module>adapter-example</module>
     </modules>
     <properties>
         <compiler-plugin.version>3.8.1</compiler-plugin.version>
