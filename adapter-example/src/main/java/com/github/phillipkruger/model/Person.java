@@ -22,7 +22,7 @@ public class Person {
     public URL website;
     public List<Relation> relations;
     public CurencyCode curencyCode;
-    public Home home;
+    
     public void addName(String name){
         if(names==null)names = new LinkedList<>();
         names.add(name);
