@@ -5,16 +5,18 @@ import com.github.phillipkruger.model.CurencyCode;
 import com.github.phillipkruger.model.ExchangeRate;
 import com.github.phillipkruger.model.Person;
 import com.github.phillipkruger.service.PersonService;
+import io.quarkus.security.identity.SecurityIdentity;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ExecutionException;
-import javax.annotation.security.RolesAllowed;
-import javax.inject.Inject;
+import jakarta.annotation.security.RolesAllowed;
+import jakarta.inject.Inject;
 import org.eclipse.microprofile.graphql.DefaultValue;
 import org.eclipse.microprofile.graphql.GraphQLApi;
 import org.eclipse.microprofile.graphql.Query;
 import org.eclipse.microprofile.graphql.Source;
+import org.eclipse.microprofile.jwt.JsonWebToken;
 
 /**
  * Person GraphQL endpoint
@@ -29,6 +31,11 @@ public class PersonEndpoint {
     @Inject
     ExchangeRateService exchangeRateService;
     
+    @Inject
+    SecurityIdentity securityIdentity;
+    
+    @Inject
+    JsonWebToken jwt; 
     
     @Query
     @RolesAllowed("user")
@@ -41,6 +48,13 @@ public class PersonEndpoint {
         Map<CurencyCode, ExchangeRate> map = getExchangeRate(against);
         List<ExchangeRate> rates = new ArrayList<>();
         return map.get(person.curencyCode);
+    }
+    
+    @Query
+    public Map<String,String> details(){
+        return Map.of("principal", securityIdentity.getPrincipal().getName(),
+                "jwtname", jwt.getName());
+        
     }
     
     private Map<CurencyCode, ExchangeRate> getExchangeRate(CurencyCode against){

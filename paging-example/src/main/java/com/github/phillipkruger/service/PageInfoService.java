@@ -1,7 +1,7 @@
 package com.github.phillipkruger.service;
 
 import com.github.phillipkruger.model.PageInfo;
-import javax.enterprise.context.RequestScoped;
+import jakarta.enterprise.context.RequestScoped;
 import org.eclipse.microprofile.graphql.GraphQLApi;
 import org.eclipse.microprofile.graphql.Query;
 

@@ -4,7 +4,7 @@ import com.github.phillipkruger.model.ISO6391;
 import com.github.phillipkruger.model.Language;
 import java.util.HashMap;
 import java.util.Map;
-import javax.enterprise.context.ApplicationScoped;
+import jakarta.enterprise.context.ApplicationScoped;
 
 /**
  * Service that facade the Person database.

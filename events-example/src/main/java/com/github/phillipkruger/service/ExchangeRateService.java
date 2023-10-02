@@ -14,8 +14,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.CompletionStage;
 import java.util.function.Function;
-import javax.enterprise.context.ApplicationScoped;
-import javax.inject.Inject;
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Inject;
 
 /**
  * Service that return the exchange rate against a certain base

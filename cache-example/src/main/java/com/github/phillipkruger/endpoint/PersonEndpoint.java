@@ -8,7 +8,7 @@ import com.github.phillipkruger.service.PersonService;
 import io.quarkus.cache.CacheResult;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
-import javax.inject.Inject;
+import jakarta.inject.Inject;
 import org.eclipse.microprofile.graphql.GraphQLApi;
 import org.eclipse.microprofile.graphql.Query;
 import org.eclipse.microprofile.graphql.Source;

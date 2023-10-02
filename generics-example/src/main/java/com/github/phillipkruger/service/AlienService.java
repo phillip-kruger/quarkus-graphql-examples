@@ -3,7 +3,7 @@ package com.github.phillipkruger.service;
 import com.github.phillipkruger.model.Alien;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
-import javax.enterprise.context.ApplicationScoped;
+import jakarta.enterprise.context.ApplicationScoped;
 
 /**
  * Service that facade the Alien database.

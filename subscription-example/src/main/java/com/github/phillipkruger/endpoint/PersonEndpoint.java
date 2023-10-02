@@ -7,7 +7,7 @@ import io.smallrye.mutiny.Multi;
 import java.time.Duration;
 import java.util.List;
 import java.util.function.Function;
-import javax.inject.Inject;
+import jakarta.inject.Inject;
 import org.eclipse.microprofile.graphql.GraphQLApi;
 import org.eclipse.microprofile.graphql.Mutation;
 import org.eclipse.microprofile.graphql.Query;

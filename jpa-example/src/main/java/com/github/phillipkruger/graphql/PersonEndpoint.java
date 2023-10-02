@@ -3,7 +3,7 @@ package com.github.phillipkruger.graphql;
 import com.github.phillipkruger.model.Person;
 import com.github.phillipkruger.service.PersonService;
 import java.util.List;
-import javax.inject.Inject;
+import jakarta.inject.Inject;
 import org.eclipse.microprofile.graphql.GraphQLApi;
 import org.eclipse.microprofile.graphql.Mutation;
 import org.eclipse.microprofile.graphql.Query;

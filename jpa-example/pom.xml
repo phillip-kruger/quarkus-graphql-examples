@@ -13,10 +13,6 @@
     <name>GraphQL Experimental :: JPA Example</name>
 
     <dependencies>
-<!--        <dependency>
-            <groupId>io.quarkus</groupId>
-            <artifactId>quarkus-resteasy-reactive-jsonb</artifactId>
-        </dependency>-->
         <dependency>
             <groupId>io.quarkus</groupId>
             <artifactId>quarkus-resteasy-jsonb</artifactId>
@@ -25,18 +21,10 @@
             <groupId>io.quarkus</groupId>
             <artifactId>quarkus-smallrye-openapi</artifactId>
         </dependency>
-<!--        <dependency>
-            <groupId>io.quarkus</groupId>
-            <artifactId>quarkus-hibernate-reactive-panache</artifactId>
-        </dependency>-->
         <dependency>
             <groupId>io.quarkus</groupId>
             <artifactId>quarkus-hibernate-orm-panache</artifactId>
         </dependency>
-<!--        <dependency>
-            <groupId>io.quarkus</groupId>
-            <artifactId>quarkus-reactive-pg-client</artifactId>
-        </dependency>-->
         <dependency>
             <groupId>io.quarkus</groupId>
             <artifactId>quarkus-jdbc-postgresql</artifactId>

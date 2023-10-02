@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ExecutionException;
-import javax.inject.Inject;
+import jakarta.inject.Inject;
 import org.eclipse.microprofile.graphql.GraphQLApi;
 import org.eclipse.microprofile.graphql.Query;
 import org.eclipse.microprofile.graphql.Source;
@@ -32,13 +32,13 @@ public class PersonEndpoint {
         return personService.getAllPeople();
     }
     
-    public ExchangeRate getExchangeRate(@Source Person person, CurencyCode against){
+    public ExchangeRate getExchangeRate2(@Source Person person, CurencyCode against){
         Map<CurencyCode, ExchangeRate> map = getExchangeRate(against);
         List<ExchangeRate> rates = new ArrayList<>();
         return map.get(person.curencyCode);
     }
     
-    public List<ExchangeRate> getExchangeRate2(@Source List<Person> people, CurencyCode against){
+    public List<ExchangeRate> getExchangeRate(@Source List<Person> people, CurencyCode against){
         Map<CurencyCode, ExchangeRate> map = getExchangeRate(against);
         List<ExchangeRate> rates = new ArrayList<>();
         for(Person person : people){

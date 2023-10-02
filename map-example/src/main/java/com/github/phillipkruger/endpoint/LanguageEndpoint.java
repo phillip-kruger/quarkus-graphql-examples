@@ -4,7 +4,7 @@ import com.github.phillipkruger.model.ISO6391;
 import com.github.phillipkruger.model.Language;
 import com.github.phillipkruger.service.LanguageService;
 import java.util.Map;
-import javax.inject.Inject;
+import jakarta.inject.Inject;
 import org.eclipse.microprofile.graphql.GraphQLApi;
 import org.eclipse.microprofile.graphql.Query;
 

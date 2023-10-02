@@ -5,7 +5,7 @@ import com.github.phillipkruger.model.Being;
 import com.github.phillipkruger.model.Person;
 import com.github.phillipkruger.service.AlienService;
 import com.github.phillipkruger.service.PersonService;
-import javax.inject.Inject;
+import jakarta.inject.Inject;
 import org.eclipse.microprofile.graphql.GraphQLApi;
 import org.eclipse.microprofile.graphql.Query;
 

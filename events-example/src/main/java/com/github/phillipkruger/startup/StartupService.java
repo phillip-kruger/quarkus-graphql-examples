@@ -1,17 +1,15 @@
 package com.github.phillipkruger.startup;
 
 import io.quarkus.runtime.StartupEvent;
-import io.smallrye.graphql.api.Context;
 import io.smallrye.graphql.execution.ExecutionResponse;
 import io.smallrye.graphql.execution.ExecutionResponseWriter;
 import io.smallrye.graphql.execution.ExecutionService;
-import io.smallrye.graphql.execution.JsonObjectResponseWriter;
-import javax.enterprise.context.ApplicationScoped;
-import javax.enterprise.event.Observes;
-import javax.inject.Inject;
-import javax.json.Json;
-import javax.json.JsonObject;
-import javax.json.JsonObjectBuilder;
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.enterprise.event.Observes;
+import jakarta.inject.Inject;
+import jakarta.json.Json;
+import jakarta.json.JsonObject;
+import jakarta.json.JsonObjectBuilder;
 
 /**
  * Service that does things on startup
