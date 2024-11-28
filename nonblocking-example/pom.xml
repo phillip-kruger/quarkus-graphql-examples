@@ -10,5 +10,5 @@
     
     <artifactId>nonblocking-example</artifactId>
     
-    <name>GraphQL Experimental :: Non-blocking Example</name>
+    <name>Quarkus GraphQL Examples :: Non-blocking Example</name>
 </project>

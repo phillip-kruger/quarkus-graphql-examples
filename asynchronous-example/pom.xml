@@ -10,5 +10,5 @@
     
     <artifactId>asynchronous-example</artifactId>
     
-    <name>GraphQL Experimental :: Asynchronous Example</name>
+    <name>Quarkus GraphQL Examples :: Asynchronous Example</name>
 </project>

@@ -7,10 +7,10 @@
     <version>1.0.0-SNAPSHOT</version>
     <packaging>pom</packaging>
     
-    <name>GraphQL Experimental</name>
+    <name>Quarkus GraphQL Examples</name>
     
-    <url>https://github.com/phillip-kruger/graphql-experimental</url>
-    <description>Experimental features in GraphQL</description>
+    <url>https://github.com/phillip-kruger/quarkus-graphql-examples</url>
+    <description>GraphQL features in Quarkus</description>
     
     <licenses>
         <license>
@@ -21,14 +21,14 @@
     </licenses>
     
     <scm>
-        <connection>scm:git:https://github.com/phillip-kruger/graphql-experimental.git</connection>
-        <url>https://github.com/phillip-kruger/graphql-experimental</url>
+        <connection>scm:git:https://github.com/phillip-kruger/quarkus-graphql-examples.git</connection>
+        <url>https://github.com/phillip-kruger/quarkus-graphql-examples</url>
     </scm>
         
     <distributionManagement>
         <site>
             <id>wiki</id>
-            <url>https://github.com/phillip-kruger/graphql-experimental/wiki</url>
+            <url>https://github.com/phillip-kruger/quarkus-graphql-examples/wiki</url>
         </site>
         
         <snapshotRepository>
@@ -50,6 +50,7 @@
         </developer>
     </developers>
     <modules>
+        <module>query-example</module>
         <module>context-example</module>
         <module>cache-example</module>
         <module>asynchronous-example</module>
@@ -64,17 +65,19 @@
         <module>security-example</module>
         <module>paging-example</module>
     </modules>
+    
     <properties>
-        <compiler-plugin.version>3.8.1</compiler-plugin.version>
+        <compiler-plugin.version>3.13.0</compiler-plugin.version>
         <maven.compiler.parameters>true</maven.compiler.parameters>
-        <maven.compiler.source>17</maven.compiler.source>
-        <maven.compiler.target>17</maven.compiler.target>
+        <maven.compiler.source>21</maven.compiler.source>
+        <maven.compiler.target>21</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <quarkus.platform.artifact-id>quarkus-bom</quarkus.platform.artifact-id>
         <quarkus.platform.group-id>io.quarkus</quarkus.platform.group-id>
         <quarkus.platform.version>999-SNAPSHOT</quarkus.platform.version>
-        <surefire-plugin.version>3.0.0-M5</surefire-plugin.version>
+        <skipITs>true</skipITs>
+        <surefire-plugin.version>3.5.0</surefire-plugin.version>
     </properties>
     
     <dependencyManagement>
@@ -82,7 +85,7 @@
             <dependency>
                 <groupId>${quarkus.platform.group-id}</groupId>
                 <artifactId>${quarkus.platform.artifact-id}</artifactId>
-                <version>3.4.1</version>
+                <version>${quarkus.platform.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -113,6 +116,7 @@
                             <goal>build</goal>
                             <goal>generate-code</goal>
                             <goal>generate-code-tests</goal>
+                            <goal>native-image-agent</goal>
                         </goals>
                     </execution>
                 </executions>
@@ -134,9 +138,28 @@
                     </systemPropertyVariables>
                 </configuration>
             </plugin>
-            
+            <plugin>
+                <artifactId>maven-failsafe-plugin</artifactId>
+                <version>${surefire-plugin.version}</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>integration-test</goal>
+                            <goal>verify</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <systemPropertyVariables>
+                        <native.image.path>${project.build.directory}/${project.build.finalName}-runner</native.image.path>
+                        <java.util.logging.manager>org.jboss.logmanager.LogManager</java.util.logging.manager>
+                        <maven.home>${maven.home}</maven.home>
+                    </systemPropertyVariables>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
+    
     <profiles>
         <profile>
             <id>native</id>
@@ -145,31 +168,9 @@
                     <name>native</name>
                 </property>
             </activation>
-            <build>
-                <plugins>
-                    <plugin>
-                        <artifactId>maven-failsafe-plugin</artifactId>
-                        <version>${surefire-plugin.version}</version>
-                        <executions>
-                            <execution>
-                                <goals>
-                                    <goal>integration-test</goal>
-                                    <goal>verify</goal>
-                                </goals>
-                                <configuration>
-                                    <systemPropertyVariables>
-                                        <native.image.path>${project.build.directory}/${project.build.finalName}-runner</native.image.path>
-                                        <java.util.logging.manager>org.jboss.logmanager.LogManager</java.util.logging.manager>
-                                        <maven.home>${maven.home}</maven.home>
-                                    </systemPropertyVariables>
-                                </configuration>
-                            </execution>
-                        </executions>
-                    </plugin>
-                </plugins>
-            </build>
             <properties>
-                <quarkus.package.type>native</quarkus.package.type>
+                <skipITs>false</skipITs>
+                <quarkus.native.enabled>true</quarkus.native.enabled>
             </properties>
         </profile>
     </profiles>

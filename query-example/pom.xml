@@ -8,14 +8,26 @@
         <relativePath>../</relativePath>
     </parent>
     
-    <artifactId>cache-example</artifactId>
+    <artifactId>query-example</artifactId>
     
-    <name>Quarkus GraphQL Examples :: Cache Example</name>
+    <name>Quarkus GraphQL Examples :: Query Example</name>
     
     <dependencies>
         <dependency>
             <groupId>io.quarkus</groupId>
-            <artifactId>quarkus-cache</artifactId>
+            <artifactId>quarkus-rest-jsonb</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.quarkus</groupId>
+            <artifactId>quarkus-smallrye-openapi</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.quarkus</groupId>
+            <artifactId>quarkus-hibernate-orm</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.quarkus</groupId>
+            <artifactId>quarkus-jdbc-postgresql</artifactId>
         </dependency>
     </dependencies>
 </project>

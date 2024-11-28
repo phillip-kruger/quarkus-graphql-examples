@@ -10,7 +10,7 @@
     
     <artifactId>security-example</artifactId>
     
-    <name>GraphQL Experimental :: Security Example</name>
+    <name>Quarkus GraphQL Examples :: Security Example</name>
     
     <dependencies>
         <dependency>

@@ -10,6 +10,6 @@
     
     <artifactId>subscription-example</artifactId>
     
-    <name>GraphQL Experimental :: Subscription Example</name>
+    <name>Quarkus GraphQL Examples :: Subscription Example</name>
     
 </project>

@@ -10,5 +10,5 @@
     
     <artifactId>map-example</artifactId>
     
-    <name>GraphQL Experimental :: Map Example</name>
+    <name>Quarkus GraphQL Examples :: Map Example</name>
 </project>

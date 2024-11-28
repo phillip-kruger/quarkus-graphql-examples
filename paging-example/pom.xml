@@ -10,5 +10,5 @@
     
     <artifactId>paging-example</artifactId>
     
-    <name>GraphQL Experimental :: Paging Example</name>
+    <name>Quarkus GraphQL Examples :: Paging Example</name>
 </project>

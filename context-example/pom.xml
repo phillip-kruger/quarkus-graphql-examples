@@ -10,6 +10,6 @@
     
     <artifactId>context-example</artifactId>
     
-    <name>GraphQL Experimental :: Context Example</name>
+    <name>Quarkus GraphQL Examples :: Context Example</name>
     
 </project>

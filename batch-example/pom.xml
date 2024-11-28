@@ -10,5 +10,5 @@
     
     <artifactId>batch-example</artifactId>
     
-    <name>GraphQL Experimental :: Batch Example</name>
+    <name>Quarkus GraphQL Examples :: Batch Example</name>
 </project>

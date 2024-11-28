@@ -7,7 +7,6 @@ import com.github.phillipkruger.model.Person;
 import com.github.phillipkruger.service.PersonService;
 import io.quarkus.vertx.http.runtime.CurrentVertxRequest;
 import io.smallrye.graphql.api.Context;
-import io.vertx.core.Vertx;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 import jakarta.inject.Inject;

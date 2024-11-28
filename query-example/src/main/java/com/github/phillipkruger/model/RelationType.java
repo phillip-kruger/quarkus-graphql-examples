@@ -33,6 +33,5 @@ public enum RelationType {
         FatherInLaw,
         MotherInLaw,
         BrotherInLaw,
-        SisterInLaw,
-        Friend
+        SisterInLaw
 }

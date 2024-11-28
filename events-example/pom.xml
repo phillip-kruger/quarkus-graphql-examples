@@ -10,5 +10,5 @@
     
     <artifactId>events-example</artifactId>
     
-    <name>GraphQL Experimental :: Events Example</name>
+    <name>Quarkus GraphQL Examples :: Events Example</name>
 </project>

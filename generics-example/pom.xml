@@ -10,5 +10,5 @@
     
     <artifactId>generics-example</artifactId>
     
-    <name>GraphQL Experimental :: Generics Example</name>
+    <name>Quarkus GraphQL Examples :: Generics Example</name>
 </project>

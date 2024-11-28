@@ -44,14 +44,12 @@ public class ThreadInfoEndpoint {
        return Uni.createFrom().item(getThreadInfo());
     }
     
-    @NonBlocking
-    public ThreadInfo threadInfoNonBlockingChild(@Source ThreadInfo ti) {
-       return getThreadInfo();
+    public Uni<ThreadInfo> threadInfoNonBlockingChild(@Source ThreadInfo ti) {
+       return Uni.createFrom().item(getThreadInfo());
     }
     
-    @Blocking
-    public Uni<ThreadInfo> threadInfoBlockingChild(@Source ThreadInfo ti) {
-       return Uni.createFrom().item(getThreadInfo());
+    public ThreadInfo threadInfoBlockingChild(@Source ThreadInfo ti) {
+       return getThreadInfo();
     }
     
     private ThreadInfo getThreadInfo(){

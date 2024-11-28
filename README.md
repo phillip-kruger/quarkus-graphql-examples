@@ -1,4 +1,4 @@
-# graphql-experimental
-Trying out the experimental features in SmallRye GraphQL
+# GraphQL example in Quarkus
+Trying out features in SmallRye GraphQL and Quarkus
 
-Also see https://www.phillip-kruger.com/post/experimental_graphql/
+

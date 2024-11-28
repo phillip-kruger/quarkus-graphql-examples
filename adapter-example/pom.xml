@@ -10,6 +10,6 @@
     
     <artifactId>adapter-example</artifactId>
     
-    <name>GraphQL Experimental :: Adapter Example</name>
+    <name>Quarkus GraphQL Examples :: Adapter Example</name>
     
 </project>
