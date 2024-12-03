@@ -29,7 +29,7 @@ public class Person implements Serializable {
     @ElementCollection(fetch = FetchType.EAGER, targetClass=String.class)
     private List<String> names;
 
-    @ElementCollection(targetClass=String.class)
+    @ElementCollection(fetch = FetchType.EAGER, targetClass=String.class)
     private List<String> nicknames;
 
     private String surname;
@@ -38,10 +38,10 @@ public class Person implements Serializable {
 
     private String idNumber;
 
-    @ElementCollection(targetClass=URL.class)
+    @ElementCollection(targetClass=URL.class, fetch = FetchType.EAGER)
     private List<URL> coverphotos;
 
-    @ElementCollection(targetClass=URL.class)
+    @ElementCollection(targetClass=URL.class, fetch = FetchType.EAGER)
     private List<URL> profilePictures;
 
     private Gender gender;
@@ -51,24 +51,24 @@ public class Person implements Serializable {
 
     private String favColor;
 
-    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     private List<Address> addresses;
 
-    @ElementCollection(fetch = FetchType.LAZY,targetClass=String.class)
+    @ElementCollection(fetch = FetchType.EAGER,targetClass=String.class)
     private List<String> emailAddresses;
 
-    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     private List<Phone> phoneNumbers;
 
-    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     private List<ImClient> imClients;
 
-    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     private List<SocialMedia> socialMedias;
 
     private URL website;
 
-    @ElementCollection(fetch = FetchType.LAZY,targetClass=String.class)
+    @ElementCollection(fetch = FetchType.EAGER,targetClass=String.class)
     private List<String> taglines;
 
     private String biography;
@@ -77,13 +77,13 @@ public class Person implements Serializable {
 
     private String occupation;
 
-    @ElementCollection(fetch = FetchType.LAZY,targetClass=String.class)
+    @ElementCollection(fetch = FetchType.EAGER,targetClass=String.class)
     private List<String> interests;
 
-    @ElementCollection(fetch = FetchType.LAZY,targetClass=String.class)
+    @ElementCollection(fetch = FetchType.EAGER,targetClass=String.class)
     private List<String> skills;
 
-    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     private List<Relation> relations;
 
     @JsonbDateFormat("dd/MM/yyyy")
@@ -91,7 +91,7 @@ public class Person implements Serializable {
 
     private String maritalStatus;
 
-    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     private List<CreditCard> creditCards;
 
     private String userAgent;
