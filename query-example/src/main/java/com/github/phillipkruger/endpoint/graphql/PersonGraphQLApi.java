@@ -1,6 +1,6 @@
 package com.github.phillipkruger.endpoint.graphql;
 
-import com.github.phillipkruger.ScoresNotAvailableException;
+import com.github.phillipkruger.ExchangeRateNotAvailableException;
 import com.github.phillipkruger.model.CurrencyCode;
 import com.github.phillipkruger.model.ExchangeRate;
 import com.github.phillipkruger.model.Person;
@@ -50,12 +50,12 @@ public class PersonGraphQLApi {
         return CompletableFuture.supplyAsync(()-> personService.getPerson(id));
     }
     
-    public List<List<Score>> getScores(@Source List<Person> people) throws ScoresNotAvailableException{
+    public List<List<Score>> getScores(@Source List<Person> people) {
         List<String> ids = people.stream().map(Person::getIdNumber).collect(Collectors.toList());
         return scoreService.getScores(ids);
     }
     
-    public CompletionStage<ExchangeRate> getExchangeRate(@Source Person person, CurrencyCode against){
+    public CompletionStage<ExchangeRate> getExchangeRate(@Source Person person, CurrencyCode against) throws ExchangeRateNotAvailableException{
         //return exchangeRateService.getExchangeRate(against, person.getCurrencyCode());
         return exchangeRateService.getFutureExchangeRate(against, person.getCurrencyCode());
         //return CompletableFuture.failedStage(new ScoresNotAvailableException("Exchange rate system is down"));

@@ -49,9 +49,14 @@ ADD WEATHER FROM FILE
   }
 }
 
-== Async == 
+== Concurrent requests ==
 
 CompletableFuture.supplyAsync(() -> personService.getPerson(id));
+
+and
+
+getFutureExchangeRate
+
 
 {
   person(id:1){
@@ -75,6 +80,8 @@ CompletableFuture.supplyAsync(() -> personService.getPerson(id));
 }
 
 == Errors and partial response ==
+
+return CompletableFuture.failedStage(new ExchangeRateNotAvailableException("Exchange rate system is down"));
 
 {
   person(id: 1){
@@ -150,9 +157,22 @@ subscription PersonEvent {
   }
 }
 
+
+== Introspection ==
+
+{
+  __schema {
+    types{
+      name
+      kind
+    }
+  }
+}
+
 == Security ==
 
 @RolesAllowed("user")
+(add on scores)
 
 {
   "authorization": "Bearer "
@@ -161,5 +181,6 @@ subscription PersonEvent {
 == Transformation and mapping ==
 
 On birthdate: @DateFormat("dd/MM/yyyy")
-On id: @ToScalar(Scalar.Int.class)
-On email @ToScalar(Scalar.String.class)
+On id: @AdaptToScalar(Scalar.Int.class)
+On phone @AdaptToScalar(Scalar.String.class)
+On address @AdaptWith(AddressAdapter.class)
