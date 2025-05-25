@@ -31,7 +31,6 @@ public class PersonService {
         return people;
     }
     
-    @Transactional
     public Person getPerson(long id){
         Log.info(">> Getting person [" + id +"]");
         Person p = em.find(Person.class,id);

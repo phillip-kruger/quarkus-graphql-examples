@@ -9,7 +9,7 @@ import jakarta.ws.rs.PathParam;
 import java.util.List;
 
 @Path("/score")
-public class ScoreRestApi {
+public class ScoreResource {
     @Inject 
     ScoreService scoreService;
     
