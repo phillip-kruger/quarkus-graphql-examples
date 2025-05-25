@@ -35,3 +35,4 @@ hs_err_pid*
 /security-example/target/
 /paging-example/target/
 /query-example/target/
+/rest-example/target/

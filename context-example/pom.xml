@@ -12,4 +12,15 @@
     
     <name>Quarkus GraphQL Examples :: Context Example</name>
     
+    <dependencies>
+        <dependency>
+            <groupId>io.quarkus</groupId>
+            <artifactId>quarkus-smallrye-graphql</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.vertx</groupId>
+            <artifactId>vertx-web-client</artifactId>
+        </dependency>
+    </dependencies>
+    
 </project>

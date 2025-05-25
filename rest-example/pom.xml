@@ -8,19 +8,26 @@
         <relativePath>../</relativePath>
     </parent>
     
-    <artifactId>subscription-example</artifactId>
+    <artifactId>rest-example</artifactId>
     
-    <name>Quarkus GraphQL Examples :: Subscription Example</name>
+    <name>Quarkus GraphQL Examples :: REST Example</name>
     
     <dependencies>
         <dependency>
             <groupId>io.quarkus</groupId>
-            <artifactId>quarkus-smallrye-graphql</artifactId>
+            <artifactId>quarkus-rest-jsonb</artifactId>
         </dependency>
         <dependency>
-            <groupId>io.vertx</groupId>
-            <artifactId>vertx-web-client</artifactId>
+            <groupId>io.quarkus</groupId>
+            <artifactId>quarkus-smallrye-openapi</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.quarkus</groupId>
+            <artifactId>quarkus-hibernate-orm</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.quarkus</groupId>
+            <artifactId>quarkus-jdbc-postgresql</artifactId>
         </dependency>
     </dependencies>
-    
 </project>
