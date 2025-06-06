@@ -1,4 +1,4 @@
-package com.github.phillipkruger.endpoint.graphql;
+package com.github.phillipkruger.resource;
 
 import com.github.phillipkruger.model.Weather;
 import com.github.phillipkruger.service.WeatherService;
@@ -12,7 +12,7 @@ import org.eclipse.microprofile.graphql.Query;
  * @author Phillip Kruger (phillip.kruger@redhat.com)
  */
 @GraphQLApi
-public class WeatherGraphQLApi {
+public class WeatherResource {
 
     @Inject
     WeatherService weatherService;

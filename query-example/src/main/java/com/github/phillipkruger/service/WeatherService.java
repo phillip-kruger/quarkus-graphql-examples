@@ -29,7 +29,6 @@ public class WeatherService {
         weatherMap.put("Mumbai", new Weather("Humid", 30.0, 27.0, 34.0));
     }
     
-    
     public CompletionStage<Weather> getFutureWeather(String city) {
         return CompletableFuture.supplyAsync(() -> 
             getWeather(city)

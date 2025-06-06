@@ -26,10 +26,10 @@ public class Person implements Serializable {
 
     private String title;
 
-    @ElementCollection(fetch = FetchType.EAGER, targetClass=String.class)
+    @ElementCollection(fetch = FetchType.LAZY, targetClass=String.class)
     private List<String> names;
 
-    @ElementCollection(fetch = FetchType.EAGER, targetClass=String.class)
+    @ElementCollection(fetch = FetchType.LAZY, targetClass=String.class)
     private List<String> nicknames;
 
     private String surname;
@@ -38,10 +38,10 @@ public class Person implements Serializable {
 
     private String idNumber;
 
-    @ElementCollection(targetClass=URL.class, fetch = FetchType.EAGER)
+    @ElementCollection(targetClass=URL.class, fetch = FetchType.LAZY)
     private List<URL> coverphotos;
 
-    @ElementCollection(targetClass=URL.class, fetch = FetchType.EAGER)
+    @ElementCollection(targetClass=URL.class, fetch = FetchType.LAZY)
     private List<URL> profilePictures;
 
     private Gender gender;
@@ -51,24 +51,24 @@ public class Person implements Serializable {
 
     private String favColor;
 
-    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     private List<Address> addresses;
 
-    @ElementCollection(fetch = FetchType.EAGER,targetClass=String.class)
+    @ElementCollection(fetch = FetchType.LAZY,targetClass=String.class)
     private List<String> emailAddresses;
 
-    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     private List<Phone> phoneNumbers;
 
-    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     private List<ImClient> imClients;
 
-    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     private List<SocialMedia> socialMedias;
 
     private URL website;
 
-    @ElementCollection(fetch = FetchType.EAGER,targetClass=String.class)
+    @ElementCollection(fetch = FetchType.LAZY,targetClass=String.class)
     private List<String> taglines;
 
     private String biography;
@@ -77,21 +77,18 @@ public class Person implements Serializable {
 
     private String occupation;
 
-    @ElementCollection(fetch = FetchType.EAGER,targetClass=String.class)
+    @ElementCollection(fetch = FetchType.LAZY,targetClass=String.class)
     private List<String> interests;
 
-    @ElementCollection(fetch = FetchType.EAGER,targetClass=String.class)
+    @ElementCollection(fetch = FetchType.LAZY,targetClass=String.class)
     private List<String> skills;
-
-    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
-    private List<Relation> relations;
 
     @JsonbDateFormat("dd/MM/yyyy")
     private LocalDate joinDate;
 
     private String maritalStatus;
 
-    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     private List<CreditCard> creditCards;
 
     private String userAgent;
@@ -156,11 +153,6 @@ public class Person implements Serializable {
     public void addSkill(String skill){
         if(skills==null)skills = new LinkedList<>();
         skills.add(skill);
-    }
-
-    public void addRelationship(Relation relation){
-        if(relations==null)relations = new LinkedList<>();
-        relations.add(relation);
     }
 
     public void addCreditCard(CreditCard card){
@@ -366,14 +358,6 @@ public class Person implements Serializable {
 
     public void setSkills(List<String> skills) {
         this.skills = skills;
-    }
-
-    public List<Relation> getRelations() {
-        return relations;
-    }
-
-    public void setRelations(List<Relation> relations) {
-        this.relations = relations;
     }
 
     public LocalDate getJoinDate() {

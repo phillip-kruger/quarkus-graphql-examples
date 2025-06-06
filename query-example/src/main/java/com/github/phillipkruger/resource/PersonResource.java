@@ -1,4 +1,4 @@
-package com.github.phillipkruger.endpoint.graphql;
+package com.github.phillipkruger.resource;
 
 import com.github.phillipkruger.ExchangeRateNotAvailableException;
 import com.github.phillipkruger.model.CurrencyCode;
@@ -27,7 +27,7 @@ import org.eclipse.microprofile.graphql.Source;
  * @author Phillip Kruger (phillip.kruger@redhat.com)
  */
 @GraphQLApi
-public class PersonGraphQLApi {
+public class PersonResource {
 
     @Inject
     PersonService personService;

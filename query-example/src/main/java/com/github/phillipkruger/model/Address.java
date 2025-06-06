@@ -18,7 +18,7 @@ public class Address {
     @JsonbTransient
     private Integer id;
     
-    @ElementCollection(fetch = FetchType.EAGER,targetClass=String.class) 
+    @ElementCollection(fetch = FetchType.LAZY,targetClass=String.class) 
     @OrderColumn
     private List<String> lines;
     private String code;

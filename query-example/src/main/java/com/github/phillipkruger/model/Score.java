@@ -1,6 +1,6 @@
 package com.github.phillipkruger.model;
 
-public class Score implements Measurable {
+public class Score {
 
     private String id;
     private ScoreType name;
@@ -22,7 +22,6 @@ public class Score implements Measurable {
         this.name = name;
     }
 
-    @Override
     public Long getValue() {
         return value;
     }
