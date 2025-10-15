@@ -8,14 +8,14 @@ import jakarta.persistence.Id;
 import org.eclipse.microprofile.graphql.Ignore;
 
 @Entity
-public class SocialMedia extends PanacheEntityBase {
+public class Relation extends PanacheEntityBase {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Ignore
     public Integer id;
     
-    public String name;
-    public String username;
+    public RelationType relationType;
+    public String personURI;
 
 }

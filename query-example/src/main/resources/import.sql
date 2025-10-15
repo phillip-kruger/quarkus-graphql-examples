@@ -1,8 +1,6 @@
 -- Load some test data
 
-
-
-insert into PERSON (id, locale, title, surname, username, idnumber, gender, birthdate, favColor, website, biography, organization, occupation, joinDate, maritalStatus, userAgent, currencyCode) values (1, 'en-ZA', 'Mrs.', 'O''Reilly', 'armando.wisoky', '797-95-4822', 1, '1977-11-08', 'mint green', 'http://www.korey-gleichner.org', 'Aut eaque et velit exercitationem. Voluptatum nihil sint quo sed eos saepe. Aut officia enim unde. Et quae fugiat quas vel est. Quo eos ipsum sed inventore et. Sunt dolor quia nulla debitis porro rerum vel. Voluptates qui ab.','Rice Sons', 'Architect', '2011-03-04', 'Separated', 'Opera', 25);
+insert into PERSON (id, locale, title, surname, username, idnumber, gender, birthdate, favColor, website, biography, organization, occupation, joinDate, maritalStatus,userAgent,curencyCode) values (1, 'en-ZA', 'Mrs.', 'O''Reilly', 'armando.wisoky', '797-95-4822', 1, '1977-11-08', 'mint green', 'http://www.korey-gleichner.org', 'Aut eaque et velit exercitationem. Voluptatum nihil sint quo sed eos saepe. Aut officia enim unde. Et quae fugiat quas vel est. Quo eos ipsum sed inventore et. Sunt dolor quia nulla debitis porro rerum vel. Voluptates qui ab.','Rice Sons', 'Architect', '2011-03-04', 'Separated', 'Opera', 18);
 insert into PERSON_NAMES (PERSON_ID, NAMES) values (1, 'Christine');
 insert into PERSON_NAMES (PERSON_ID, NAMES) values (1, 'Fabian');
 insert into PERSON_NICKNAMES (PERSON_ID, NICKNAMES) values (1, 'Annie Moore');
@@ -45,7 +43,7 @@ insert into PERSON_SOCIALMEDIA (PERSON_ID, SOCIALMEDIAS_ID) values (1, 1);
 insert into SOCIALMEDIA (ID, NAME, USERNAME) values (2, 'Facebook','noemi.bogan');
 insert into PERSON_SOCIALMEDIA (PERSON_ID, SOCIALMEDIAS_ID) values (1, 2);
 
-insert into PERSON (id, locale, title, surname, username, idnumber, gender, birthdate, favColor, website, biography, organization, occupation, joinDate, maritalStatus,userAgent, currencyCode) values (2, 'en-ZA', 'Mr.', 'Kohler', 'armando.wisoky', '373-95-3047', 0, '1977-11-08', 'maroon', 'http://www.santos-schumm.com', 'Aut eaque et velit exercitationem. Voluptatum nihil sint quo sed eos saepe. Aut officia enim unde. Et quae fugiat quas vel est. Quo eos ipsum sed inventore et. Sunt dolor quia nulla debitis porro rerum vel. Voluptates qui ab.','Block Sons', 'Specialist', '2011-03-04', 'Married', 'Mozilla', 29);
+insert into PERSON (id, locale, title, surname, username, idnumber, gender, birthdate, favColor, website, biography, organization, occupation, joinDate, maritalStatus,userAgent,curencyCode) values (2, 'en-ZA', 'Mr.', 'Kohler', 'armando.wisoky', '373-95-3047', 0, '1977-11-08', 'maroon', 'http://www.santos-schumm.com', 'Aut eaque et velit exercitationem. Voluptatum nihil sint quo sed eos saepe. Aut officia enim unde. Et quae fugiat quas vel est. Quo eos ipsum sed inventore et. Sunt dolor quia nulla debitis porro rerum vel. Voluptates qui ab.','Block Sons', 'Specialist', '2011-03-04', 'Married', 'Mozilla', 25);
 insert into PERSON_NAMES (PERSON_ID, NAMES) values (2, 'Cesar');
 insert into PERSON_NAMES (PERSON_ID, NAMES) values (2, 'Junior');
 insert into PERSON_NICKNAMES (PERSON_ID, NICKNAMES) values (2, 'Sam Urai');
@@ -88,7 +86,7 @@ insert into PERSON_SOCIALMEDIA (PERSON_ID, SOCIALMEDIAS_ID) values (2, 3);
 insert into SOCIALMEDIA (ID, NAME, USERNAME) values (4, 'Facebook','cecille.gibson');
 insert into PERSON_SOCIALMEDIA (PERSON_ID, SOCIALMEDIAS_ID) values (2, 4);
 
-insert into PERSON (id, locale, title, surname, username, idnumber, gender, birthdate, favColor, website, biography, organization, occupation, joinDate, maritalStatus,userAgent, currencyCode) values (3, 'en-ZA', 'Ms.', 'O''Keefe', 'ermelinda.blanda', '097-87-6795', 1, '1977-11-08', 'grey', 'http://www.lilian-hauck.net', 'Aut eaque et velit exercitationem. Voluptatum nihil sint quo sed eos saepe. Aut officia enim unde. Et quae fugiat quas vel est. Quo eos ipsum sed inventore et. Sunt dolor quia nulla debitis porro rerum vel. Voluptates qui ab.','Schroeder Inc', 'Technician', '2011-03-04', 'Never married', 'Mozilla', 24);
+insert into PERSON (id, locale, title, surname, username, idnumber, gender, birthdate, favColor, website, biography, organization, occupation, joinDate, maritalStatus,userAgent,curencyCode) values (3, 'en-ZA', 'Ms.', 'O''Keefe', 'ermelinda.blanda', '097-87-6795', 1, '1977-11-08', 'grey', 'http://www.lilian-hauck.net', 'Aut eaque et velit exercitationem. Voluptatum nihil sint quo sed eos saepe. Aut officia enim unde. Et quae fugiat quas vel est. Quo eos ipsum sed inventore et. Sunt dolor quia nulla debitis porro rerum vel. Voluptates qui ab.','Schroeder Inc', 'Technician', '2011-03-04', 'Never married', 'Mozilla', 26);
 insert into PERSON_NAMES (PERSON_ID, NAMES) values (3, 'Norman');
 insert into PERSON_NAMES (PERSON_ID, NAMES) values (3, 'Magdalena');
 insert into PERSON_NICKNAMES (PERSON_ID, NICKNAMES) values (3, 'Dee Sember');
@@ -131,7 +129,7 @@ insert into PERSON_SOCIALMEDIA (PERSON_ID, SOCIALMEDIAS_ID) values (3, 5);
 insert into SOCIALMEDIA (ID, NAME, USERNAME) values (6, 'Facebook','stephen.haley');
 insert into PERSON_SOCIALMEDIA (PERSON_ID, SOCIALMEDIAS_ID) values (3, 6);
 
-insert into PERSON (id, locale, title, surname, username, idnumber, gender, birthdate, favColor, website, biography, organization, occupation, joinDate, maritalStatus,userAgent, currencyCode) values (4, 'en-ZA', 'Mr.', 'Goyette', 'marketta.jakubowski', '347-01-8880', 0, '1977-11-08', 'green', 'http://www.oscar-casper.net', 'Aut eaque et velit exercitationem. Voluptatum nihil sint quo sed eos saepe. Aut officia enim unde. Et quae fugiat quas vel est. Quo eos ipsum sed inventore et. Sunt dolor quia nulla debitis porro rerum vel. Voluptates qui ab.','Dare-Kemmer', 'Analyst', '2011-03-04', 'Divorced', 'Mozilla', 26);
+insert into PERSON (id, locale, title, surname, username, idnumber, gender, birthdate, favColor, website, biography, organization, occupation, joinDate, maritalStatus,userAgent,curencyCode) values (4, 'en-ZA', 'Mr.', 'Goyette', 'marketta.jakubowski', '347-01-8880', 0, '1977-11-08', 'green', 'http://www.oscar-casper.net', 'Aut eaque et velit exercitationem. Voluptatum nihil sint quo sed eos saepe. Aut officia enim unde. Et quae fugiat quas vel est. Quo eos ipsum sed inventore et. Sunt dolor quia nulla debitis porro rerum vel. Voluptates qui ab.','Dare-Kemmer', 'Analyst', '2011-03-04', 'Divorced', 'Mozilla', 29);
 insert into PERSON_NAMES (PERSON_ID, NAMES) values (4, 'Thea');
 insert into PERSON_NAMES (PERSON_ID, NAMES) values (4, 'Corinne');
 insert into PERSON_NICKNAMES (PERSON_ID, NICKNAMES) values (4, 'Frank Furter');
@@ -174,7 +172,7 @@ insert into PERSON_SOCIALMEDIA (PERSON_ID, SOCIALMEDIAS_ID) values (4, 7);
 insert into SOCIALMEDIA (ID, NAME, USERNAME) values (8, 'Facebook','roman.breitenberg');
 insert into PERSON_SOCIALMEDIA (PERSON_ID, SOCIALMEDIAS_ID) values (4, 8);
 
-insert into PERSON (id, locale, title, surname, username, idnumber, gender, birthdate, favColor, website, biography, organization, occupation, joinDate, maritalStatus,userAgent, currencyCode) values (5, 'en-ZA', 'Dr.', 'Hyatt', 'irvin.gulgowski', '733-86-4423', 0, '1977-11-08', 'orchid', 'http://www.cassandra-lang.net', 'Aut eaque et velit exercitationem. Voluptatum nihil sint quo sed eos saepe. Aut officia enim unde. Et quae fugiat quas vel est. Quo eos ipsum sed inventore et. Sunt dolor quia nulla debitis porro rerum vel. Voluptates qui ab.','Hickle, Beatty and Treutel', 'Consultant', '2011-03-04', 'Never married', 'Mozilla', 7);
+insert into PERSON (id, locale, title, surname, username, idnumber, gender, birthdate, favColor, website, biography, organization, occupation, joinDate, maritalStatus,userAgent,curencyCode) values (5, 'en-ZA', 'Dr.', 'Hyatt', 'irvin.gulgowski', '733-86-4423', 0, '1977-11-08', 'orchid', 'http://www.cassandra-lang.net', 'Aut eaque et velit exercitationem. Voluptatum nihil sint quo sed eos saepe. Aut officia enim unde. Et quae fugiat quas vel est. Quo eos ipsum sed inventore et. Sunt dolor quia nulla debitis porro rerum vel. Voluptates qui ab.','Hickle, Beatty and Treutel', 'Consultant', '2011-03-04', 'Never married', 'Mozilla', 7);
 insert into PERSON_NAMES (PERSON_ID, NAMES) values (5, 'Eleanor');
 insert into PERSON_NAMES (PERSON_ID, NAMES) values (5, 'Joshua');
 insert into PERSON_NICKNAMES (PERSON_ID, NICKNAMES) values (5, 'Oscar Ruitt');
@@ -217,7 +215,7 @@ insert into PERSON_SOCIALMEDIA (PERSON_ID, SOCIALMEDIAS_ID) values (5, 9);
 insert into SOCIALMEDIA (ID, NAME, USERNAME) values (10, 'Facebook','kraig.kreiger');
 insert into PERSON_SOCIALMEDIA (PERSON_ID, SOCIALMEDIAS_ID) values (5, 10);
 
-insert into PERSON (id, locale, title, surname, username, idnumber, gender, birthdate, favColor, website, biography, organization, occupation, joinDate, maritalStatus,userAgent, currencyCode) values (6, 'en-ZA', 'Mr.', 'Zemlak', 'armando.wisoky', '560-99-2165', 0, '1977-11-08', 'mint green', 'http://www.korey-gleichner.org', 'Aut eaque et velit exercitationem. Voluptatum nihil sint quo sed eos saepe. Aut officia enim unde. Et quae fugiat quas vel est. Quo eos ipsum sed inventore et. Sunt dolor quia nulla debitis porro rerum vel. Voluptates qui ab.','Rice Sons', 'Architect', '2011-03-04', 'Separated', 'Opera', 0);
+insert into PERSON (id, locale, title, surname, username, idnumber, gender, birthdate, favColor, website, biography, organization, occupation, joinDate, maritalStatus,userAgent,curencyCode) values (6, 'en-ZA', 'Mr.', 'Zemlak', 'armando.wisoky', '560-99-2165', 0, '1977-11-08', 'mint green', 'http://www.korey-gleichner.org', 'Aut eaque et velit exercitationem. Voluptatum nihil sint quo sed eos saepe. Aut officia enim unde. Et quae fugiat quas vel est. Quo eos ipsum sed inventore et. Sunt dolor quia nulla debitis porro rerum vel. Voluptates qui ab.','Rice Sons', 'Architect', '2011-03-04', 'Separated', 'Opera', 24);
 insert into PERSON_NAMES (PERSON_ID, NAMES) values (6, 'Masako');
 insert into PERSON_NAMES (PERSON_ID, NAMES) values (6, 'Errol');
 insert into PERSON_NICKNAMES (PERSON_ID, NICKNAMES) values (6, 'Annie Moore');
@@ -260,7 +258,7 @@ insert into PERSON_SOCIALMEDIA (PERSON_ID, SOCIALMEDIAS_ID) values (6, 11);
 insert into SOCIALMEDIA (ID, NAME, USERNAME) values (12, 'Facebook','noemi.bogan');
 insert into PERSON_SOCIALMEDIA (PERSON_ID, SOCIALMEDIAS_ID) values (6, 12);
 
-insert into PERSON (id, locale, title, surname, username, idnumber, gender, birthdate, favColor, website, biography, organization, occupation, joinDate, maritalStatus,userAgent, currencyCode) values (7, 'en-ZA', 'Mrs.', 'Gleason', 'armando.wisoky', '091-07-5401', 1, '1977-11-08', 'maroon', 'http://www.santos-schumm.com', 'Aut eaque et velit exercitationem. Voluptatum nihil sint quo sed eos saepe. Aut officia enim unde. Et quae fugiat quas vel est. Quo eos ipsum sed inventore et. Sunt dolor quia nulla debitis porro rerum vel. Voluptates qui ab.','Block Sons', 'Specialist', '2011-03-04', 'Married', 'Mozilla', 6);
+insert into PERSON (id, locale, title, surname, username, idnumber, gender, birthdate, favColor, website, biography, organization, occupation, joinDate, maritalStatus,userAgent,curencyCode) values (7, 'en-ZA', 'Mrs.', 'Gleason', 'armando.wisoky', '091-07-5401', 1, '1977-11-08', 'maroon', 'http://www.santos-schumm.com', 'Aut eaque et velit exercitationem. Voluptatum nihil sint quo sed eos saepe. Aut officia enim unde. Et quae fugiat quas vel est. Quo eos ipsum sed inventore et. Sunt dolor quia nulla debitis porro rerum vel. Voluptates qui ab.','Block Sons', 'Specialist', '2011-03-04', 'Married', 'Mozilla', 0);
 insert into PERSON_NAMES (PERSON_ID, NAMES) values (7, 'Francis');
 insert into PERSON_NAMES (PERSON_ID, NAMES) values (7, 'Faustino');
 insert into PERSON_NICKNAMES (PERSON_ID, NICKNAMES) values (7, 'Sam Urai');
@@ -303,7 +301,7 @@ insert into PERSON_SOCIALMEDIA (PERSON_ID, SOCIALMEDIAS_ID) values (7, 13);
 insert into SOCIALMEDIA (ID, NAME, USERNAME) values (14, 'Facebook','cecille.gibson');
 insert into PERSON_SOCIALMEDIA (PERSON_ID, SOCIALMEDIAS_ID) values (7, 14);
 
-insert into PERSON (id, locale, title, surname, username, idnumber, gender, birthdate, favColor, website, biography, organization, occupation, joinDate, maritalStatus,userAgent, currencyCode) values (8, 'en-ZA', 'Mrs.', 'Pfeffer', 'ermelinda.blanda', '539-70-2014', 1, '1977-11-08', 'grey', 'http://www.lilian-hauck.net', 'Aut eaque et velit exercitationem. Voluptatum nihil sint quo sed eos saepe. Aut officia enim unde. Et quae fugiat quas vel est. Quo eos ipsum sed inventore et. Sunt dolor quia nulla debitis porro rerum vel. Voluptates qui ab.','Schroeder Inc', 'Technician', '2011-03-04', 'Never married', 'Mozilla', 4);
+insert into PERSON (id, locale, title, surname, username, idnumber, gender, birthdate, favColor, website, biography, organization, occupation, joinDate, maritalStatus,userAgent,curencyCode) values (8, 'en-ZA', 'Mrs.', 'Pfeffer', 'ermelinda.blanda', '539-70-2014', 1, '1977-11-08', 'grey', 'http://www.lilian-hauck.net', 'Aut eaque et velit exercitationem. Voluptatum nihil sint quo sed eos saepe. Aut officia enim unde. Et quae fugiat quas vel est. Quo eos ipsum sed inventore et. Sunt dolor quia nulla debitis porro rerum vel. Voluptates qui ab.','Schroeder Inc', 'Technician', '2011-03-04', 'Never married', 'Mozilla', 1);
 insert into PERSON_NAMES (PERSON_ID, NAMES) values (8, 'Frances');
 insert into PERSON_NAMES (PERSON_ID, NAMES) values (8, 'Domenic');
 insert into PERSON_NICKNAMES (PERSON_ID, NICKNAMES) values (8, 'Dee Sember');
@@ -346,7 +344,7 @@ insert into PERSON_SOCIALMEDIA (PERSON_ID, SOCIALMEDIAS_ID) values (8, 15);
 insert into SOCIALMEDIA (ID, NAME, USERNAME) values (16, 'Facebook','stephen.haley');
 insert into PERSON_SOCIALMEDIA (PERSON_ID, SOCIALMEDIAS_ID) values (8, 16);
 
-insert into PERSON (id, locale, title, surname, username, idnumber, gender, birthdate, favColor, website, biography, organization, occupation, joinDate, maritalStatus,userAgent, currencyCode) values (9, 'en-ZA', 'Miss', 'Doyle', 'marketta.jakubowski', '029-18-5986', 1, '1977-11-08', 'green', 'http://www.oscar-casper.net', 'Aut eaque et velit exercitationem. Voluptatum nihil sint quo sed eos saepe. Aut officia enim unde. Et quae fugiat quas vel est. Quo eos ipsum sed inventore et. Sunt dolor quia nulla debitis porro rerum vel. Voluptates qui ab.','Dare-Kemmer', 'Analyst', '2011-03-04', 'Divorced', 'Mozilla', 5);
+insert into PERSON (id, locale, title, surname, username, idnumber, gender, birthdate, favColor, website, biography, organization, occupation, joinDate, maritalStatus,userAgent,curencyCode) values (9, 'en-ZA', 'Miss', 'Doyle', 'marketta.jakubowski', '029-18-5986', 1, '1977-11-08', 'green', 'http://www.oscar-casper.net', 'Aut eaque et velit exercitationem. Voluptatum nihil sint quo sed eos saepe. Aut officia enim unde. Et quae fugiat quas vel est. Quo eos ipsum sed inventore et. Sunt dolor quia nulla debitis porro rerum vel. Voluptates qui ab.','Dare-Kemmer', 'Analyst', '2011-03-04', 'Divorced', 'Mozilla', 2);
 insert into PERSON_NAMES (PERSON_ID, NAMES) values (9, 'Louis');
 insert into PERSON_NAMES (PERSON_ID, NAMES) values (9, 'Eugenia');
 insert into PERSON_NICKNAMES (PERSON_ID, NICKNAMES) values (9, 'Frank Furter');
@@ -389,7 +387,7 @@ insert into PERSON_SOCIALMEDIA (PERSON_ID, SOCIALMEDIAS_ID) values (9, 17);
 insert into SOCIALMEDIA (ID, NAME, USERNAME) values (18, 'Facebook','roman.breitenberg');
 insert into PERSON_SOCIALMEDIA (PERSON_ID, SOCIALMEDIAS_ID) values (9, 18);
 
-insert into PERSON (id, locale, title, surname, username, idnumber, gender, birthdate, favColor, website, biography, organization, occupation, joinDate, maritalStatus,userAgent, currencyCode) values (10, 'en-ZA', 'Dr.', 'Doyle', 'irvin.gulgowski', '287-58-0690', 0, '1977-11-08', 'orchid', 'http://www.cassandra-lang.net', 'Aut eaque et velit exercitationem. Voluptatum nihil sint quo sed eos saepe. Aut officia enim unde. Et quae fugiat quas vel est. Quo eos ipsum sed inventore et. Sunt dolor quia nulla debitis porro rerum vel. Voluptates qui ab.','Hickle, Beatty and Treutel', 'Consultant', '2011-03-04', 'Never married', 'Mozilla', 18);
+insert into PERSON (id, locale, title, surname, username, idnumber, gender, birthdate, favColor, website, biography, organization, occupation, joinDate, maritalStatus,userAgent,curencyCode) values (10, 'en-ZA', 'Dr.', 'Doyle', 'irvin.gulgowski', '287-58-0690', 0, '1977-11-08', 'orchid', 'http://www.cassandra-lang.net', 'Aut eaque et velit exercitationem. Voluptatum nihil sint quo sed eos saepe. Aut officia enim unde. Et quae fugiat quas vel est. Quo eos ipsum sed inventore et. Sunt dolor quia nulla debitis porro rerum vel. Voluptates qui ab.','Hickle, Beatty and Treutel', 'Consultant', '2011-03-04', 'Never married', 'Mozilla',3 );
 insert into PERSON_NAMES (PERSON_ID, NAMES) values (10, 'Carita');
 insert into PERSON_NAMES (PERSON_ID, NAMES) values (10, 'Danny');
 insert into PERSON_NICKNAMES (PERSON_ID, NICKNAMES) values (10, 'Oscar Ruitt');
@@ -431,7 +429,3 @@ insert into SOCIALMEDIA (ID, NAME, USERNAME) values (19, 'Twitter','@jenifer.orn
 insert into PERSON_SOCIALMEDIA (PERSON_ID, SOCIALMEDIAS_ID) values (10, 19);
 insert into SOCIALMEDIA (ID, NAME, USERNAME) values (20, 'Facebook','kraig.kreiger');
 insert into PERSON_SOCIALMEDIA (PERSON_ID, SOCIALMEDIAS_ID) values (10, 20);
-
-update hibernate_sequences
-set next_val = 200
-where sequence_name = 'default';
